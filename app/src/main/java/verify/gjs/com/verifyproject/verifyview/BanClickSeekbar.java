@@ -3,6 +3,7 @@ package verify.gjs.com.verifyproject.verifyview;
 import android.content.Context;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 
 /**
  * <pre>
@@ -14,6 +15,8 @@ import android.util.AttributeSet;
  * </pre>
  */
 public class BanClickSeekbar extends AppCompatSeekBar{
+    private int index = 150;
+    private boolean k = true;
 
     public BanClickSeekbar(Context context) {
         super(context);
@@ -27,6 +30,24 @@ public class BanClickSeekbar extends AppCompatSeekBar{
         super(context, attrs, defStyleAttr);
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        //目的  验证完成后  再次滑动  seekbar不处理
+        int x = (int) event.getX();
+        if (event.getAction() == MotionEvent.ACTION_DOWN){
+            k = true;
+            if (x - index > 20) {
+                k = false;
+                return true;
+            }
+        }
+        if (event.getAction() == MotionEvent.ACTION_MOVE){
+            if (!k){
+                return true;
+            }
+        }
+        return super.dispatchTouchEvent(event);
+    }
 
 
 }
