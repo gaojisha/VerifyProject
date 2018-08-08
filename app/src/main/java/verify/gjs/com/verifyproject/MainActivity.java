@@ -1,5 +1,6 @@
 package verify.gjs.com.verifyproject;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * <pre>
+ *     author  : gaojisha
+ *     e-mail  : worK_practical@163.com
+ *     time    : 2018/08/02
+ *     desc    : 实现图片拖动验证
+ *     version : 1.0
+ * </pre>
+ */
 public class MainActivity extends AppCompatActivity {
     private ImageView mImageStart, mImageTarget;
     private float mTargetX, mTargetY, mStartX, mStartY;
@@ -106,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                             mImageTarget.setImageResource(R.mipmap.img_aty_verify_end_check);
                             mImageStart.setEnabled(false);
                             mImageStart.setClickable(false);
+                            startActivity(new Intent(MainActivity.this, SlideVerifyActivity.class));
                         } else {
                             //松手时不在目标范围内
                             Toast.makeText(MainActivity.this,"验证失败",Toast.LENGTH_SHORT).show();

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlideValidateView">
+        <attr name="max_width" format="dimension"></attr>
+        <attr name="max_height" format="dimension"></attr>
+        <attr name="slide_bitmap" format="dimension"></attr>
+        <attr name="slide_width_scale" format="dimension"></attr>
+        <attr name="slide_diviation" format="integer"></attr>
+    </declare-styleable>
+</resources>
