@@ -31,7 +31,7 @@ public class SlideVerifyActivity extends AppCompatActivity {
 
         mSlideValidateView = findViewById(R.id.slide_view);
         mSeekbar = findViewById(R.id.seek_bar);
-        mSlideValidateView.setImageBitmap(mSlideValidateView.drawable2Bitmap(getResources().getDrawable(R.mipmap.verify_image)));
+        mSlideValidateView.setImageBitmap(bitmap2Gray(mSlideValidateView.drawable2Bitmap(getResources().getDrawable(R.mipmap.verify_image))));
         imageVerify();
     }
 
