@@ -1,6 +1,11 @@
 package verify.gjs.com.verifyproject;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.SeekBar;
@@ -26,6 +31,7 @@ public class SlideVerifyActivity extends AppCompatActivity {
 
         mSlideValidateView = findViewById(R.id.slide_view);
         mSeekbar = findViewById(R.id.seek_bar);
+        mSlideValidateView.setImageBitmap(mSlideValidateView.drawable2Bitmap(getResources().getDrawable(R.mipmap.verify_image)));
         imageVerify();
     }
 
@@ -123,16 +129,40 @@ public class SlideVerifyActivity extends AppCompatActivity {
         mSlideValidateView.setSlideListener(new SlideValidateView.SlideListener() {
             @Override
             public void success() {
-                Toast.makeText(SlideVerifyActivity.this,"success",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SlideVerifyActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void error() {
                 mSlideValidateView.reset();
                 mSeekbar.setProgress(0);
-                Toast.makeText(SlideVerifyActivity.this,"error",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SlideVerifyActivity.this, "error", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    /**
+     * 图片转灰度
+     *
+     * @param bmSrc
+     * @return
+     */
+    public static Bitmap bitmap2Gray(Bitmap bmSrc) {
+        int width, height;
+        height = bmSrc.getHeight();
+        width = bmSrc.getWidth();
+        Bitmap bmpGray = null;
+        bmpGray = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+        Canvas c = new Canvas(bmpGray);
+        Paint paint = new Paint();
+        ColorMatrix cm = new ColorMatrix();
+        cm.setSaturation(0);
+        ColorMatrixColorFilter f = new ColorMatrixColorFilter(cm);
+        paint.setColorFilter(f);
+        c.drawBitmap(bmSrc, 0, 0, paint);
+
+        return bmpGray;
     }
 
 }

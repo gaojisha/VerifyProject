@@ -111,7 +111,7 @@ public class SlideValidateView extends AppCompatImageView {
      * @param drawable drawable格式图片数据
      * @return Bitmap  转为Bitmap格式的图片数据
      */
-    private Bitmap drawable2Bitmap(Drawable drawable) {
+    public Bitmap drawable2Bitmap(Drawable drawable) {
         if (drawable == null) {
             return null;
         } else if (drawable instanceof BitmapDrawable) {
